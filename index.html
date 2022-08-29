@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <title>Simulador Juego de Rol</title>
+</head>
+
+<header>
+    
+    <h1>Simulador de un juego de rol en texto</h1>
+    
+    <div class="btnEstado">
+        <p> Después de seleccionar un personaje puedes guardar tu elección </p>
+        <input type="button" id="btnCargar" value="Cargar">
+        <input type="button" id="btnGuardar" value="Guardar">
+    </div>
+    
+    <button onclick="modoOscuro()" class="btnModoOs">Modo Oscuro/ Modo Claro</button>
+</header>
+
+<body>
+    <h2>Haz clic en un personaje (una vez) para elegirlo y atacar al guardían de la puerta. <br> </h2>
+    
+    <div class="contPersonajes">
+        
+        <div class="imagen2">
+            <img id="soldadoSel" src="img/Soldado-removebg-preview.png" alt="soldadoSel">
+            <p id="nom2">Nombre: Cyborg</p>
+            <p>Tiene un ataque débil pero es tan <br>rápido que mientras su adversario <br> lo ataca, el ya ha atacado dos veces.</p>
+            <p>Vida: 200</p>
+            <p>Defensa: 30</p>
+            <p>Ataque: 30</p>
+        </div>
+        
+        <div class="imagen3">
+            <img id="guerreroSel" src="img/Guerrero-removebg-preview.png" alt="guerreroSel">
+            <p id="nom3"> Nombre: Asesino Élite</p>
+            <p>Muy talentoso pero con un cuerpo frágil, dotado <br> de un armamento élite que le permite resistir <br> y asestar golpes mortales.</p>
+            <p>Vida: 150</p>
+            <p>Defensa: 45</p>
+            <p>Ataque: 45</p>
+        </div>
+       
+        <div class="imgMons">
+            <img src="img/monstar-removebg-preview.png" alt="">
+            <p>Guardián de la puerta</p>
+            <p>Vida: 500</p>
+        </div>
+
+        <div class="imagen1">
+            <img id="tanqueSel" onclick="clickTanque()" src="img/rhino-removebg-preview.png" alt="tanqueSel">
+            <p id="nom1">Nombre: Titán de avance</p>
+            <p>Gran vitalidad y capacidades físicas. <br> La primera línea que todo ejército desea.</p>
+            <p>Vida: 500</p>
+            <p>Defensa: 45</p>
+            <p>Ataque: 30</p>
+        </div> 
+        <div class="imagen4">
+            <img id="vikingoSel" src="img/vikingo-removebg-preview.png" alt="vikingoSel">
+            <p id="nom4">Nombre: Devora Mentes </p>
+            <p>Pierde el control al atacar logrando inflingir el máximo daño al cuerpo y mente del rival, pero quedando al descubierto ante cualquier ataque enemigo.</p>
+            <p>Vida: 300</p>
+            <p>Defensa: 15</p>
+            <p>Ataque: 65</p>
+        </div>
+       
+    </div>
+
+    <div class="contMejoras">
+        <h4> Mejoras(?)</h4>
+        <ul id="listaMejoras">
+
+        </ul>
+    </div>
+    <!--
+        <div class="btnContainer">
+        <input type="button" id="btnAtacar" value="Atacar">
+    </div> 
+    -->
+<div>
+    <p id="anuncios"></p>
+</div>
+</body>
+<!--los scripts de js van al final del html, pero antes de cerrar la etiqueta html-->
+<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>

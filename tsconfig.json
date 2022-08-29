@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "watch": true,
+        "lib": ["DOM", "es2017"],
+        "module": "commonjs",
+        "sourceMap": true,
+        "outDir": "build"
+    }
+
+    
+}

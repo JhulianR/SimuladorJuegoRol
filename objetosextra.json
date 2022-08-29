@@ -1,0 +1,14 @@
+[
+    {
+       "nombre":"Pacto",
+       "descripcion":"Te hace 1.5 veces más fuerte, pero al precio de reducir tu vida a la mitad"
+    },
+    {
+       "nombre":"Armadura Pesada",
+       "descripcion":"Mejora CASI al doble tu defensa, pero pierdes un poco de ataque y vida"
+    },
+    {
+       "nombre":"Rejuvenecedor Celular",
+       "descripcion":"Aumenta tu vida en 200 puntos y disminuye tu ataque y defensa 5 puntos"
+    }
+ ]

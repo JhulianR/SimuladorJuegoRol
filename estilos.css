@@ -1,0 +1,125 @@
+body {
+    padding: 25px;
+    background-color: white;
+    color: black;
+    font-size: 25px;
+  }
+
+.modo-oscuro {
+  background-color: black;
+  color: white;
+}
+
+h1{
+    margin-left: 530px;
+}
+
+h2{
+    
+    text-align: start;
+    margin-left: 330px;
+    margin-top: 100px;
+}
+
+.comentario{
+    margin-left: 610px;
+}
+.btnEstado{
+    height: 50px;
+    width: 80%;
+    
+    
+    
+}
+
+#btnCargar, #btnGuardar{
+    font-size: 30px;
+    background-color: darkblue;
+    color: rgb(249, 249, 249);
+    border-radius: 20px;
+    padding: 0 15px 0 15px;
+}
+
+.btnModoOs{
+    font-size: 25px;
+    margin-top: 60px;
+    
+    border-radius: 20px;
+    padding: 0 25px 0 25px;
+    background-color: seagreen;
+}
+
+.contPersonajes{
+    width: 85%;
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr 1fr;
+    justify-content: center;
+    margin-top: 30px;
+    margin-left: 15%;
+    
+}
+
+
+.contPersonajes img{
+    height: 200px;
+    width: 300px;
+    cursor: pointer;
+    
+}
+
+.contPersonajes p{
+text-align: justify;
+}
+
+.imgMons img{
+    height: 400px;
+    background-color: whitesmoke;
+   
+}
+
+#tanqueSel{
+    background-color: black;
+    
+}
+
+#soldadoSel{
+    background-color: yellow;
+}
+
+#guerreroSel{
+    background-color: yellow;
+}
+
+#vikingoSel{
+    background-color: black;
+}
+
+.btnContainer{
+    text-align: center;
+    margin-top: 40px;
+    
+}
+
+#btnAtacar{
+    font-size: 40px;
+    border-radius: 15px;
+    background-color: crimson;
+}
+
+.contMejoras{
+    display: flex;
+    justify-content: start;
+    
+}
+#listaMejoras{
+    text-align: center;
+    font-size: smaller;
+}
+
+.mejora {
+    font-size: 40px;
+    background-color: rgb(171, 208, 97);
+    border-radius: 30px;
+    padding: 0 20px 0 20px;
+    margin: 20px;
+}
