@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="estilos.css">
     <title>Simulador Juego de Rol</title>
 </head>
@@ -22,55 +24,65 @@
 </header>
 
 <body>
-    <h2>Haz clic en un personaje (una vez) para elegirlo y atacar al guardían de la puerta. <br> </h2>
+    <h2>Haz clic en un personaje (una vez) para elegirlo y atacar al guardían de la puerta.</h2>
     
-    <div class="contPersonajes">
+    <div class="contPersonajes row">
         
-        <div class="imagen2">
-            <img id="soldadoSel" src="img/Soldado-removebg-preview.png" alt="soldadoSel">
-            <p id="nom2">Nombre: Cyborg</p>
-            <p>Tiene un ataque débil pero es tan <br>rápido que mientras su adversario <br> lo ataca, el ya ha atacado dos veces.</p>
+        <div class="imagen2 col-4">
+        <div class="card card-body text-bg-primary mb-3">
+            <img class="card-img-top" src="img/Soldado-removebg-preview.png" alt="soldadoSel">
+            <p class="card-tittle card-header nom" id="nom2">Nombre: Cyborg</p> <span id="solSpan"></span>
+            <p class="card-text">Tiene un ataque débil, pero es tan <br>rápido que mientras su adversario <br> lo ataca, el ya ha atacado dos veces.</p>
             <p>Vida: 200</p>
             <p>Defensa: 30</p>
             <p>Ataque: 30</p>
+            <input onclick="seleccionarPersonaje(1)" class="btn btn-dark" type="button" id="soldadoSel" value="Seleccionar">
         </div>
-        
-        <div class="imagen3">
-            <img id="guerreroSel" src="img/Guerrero-removebg-preview.png" alt="guerreroSel">
-            <p id="nom3"> Nombre: Asesino Élite</p>
-            <p>Muy talentoso pero con un cuerpo frágil, dotado <br> de un armamento élite que le permite resistir <br> y asestar golpes mortales.</p>
-            <p>Vida: 150</p>
-            <p>Defensa: 45</p>
-            <p>Ataque: 45</p>
-        </div>
-       
-        <div class="imgMons">
-            <img src="img/monstar-removebg-preview.png" alt="">
-            <p>Guardián de la puerta</p>
-            <p>Vida: 500</p>
-        </div>
-
-        <div class="imagen1">
-            <img id="tanqueSel" onclick="clickTanque()" src="img/rhino-removebg-preview.png" alt="tanqueSel">
-            <p id="nom1">Nombre: Titán de avance</p>
-            <p>Gran vitalidad y capacidades físicas. <br> La primera línea que todo ejército desea.</p>
+        <div id="tank" class="card card-body text-bg-primary mb-3">
+            <img class="card-img-top" src="img/rhino-removebg-preview.png" alt="tanqueSel">
+            <p class="card-tittle card-header nom" id="nom1">Nombre: Titán de avance</p> <span id="tanSpan"></span>
+            <p class="card-text">Está dotado con la mayor vitalidad y capacidades físicas, una vez que empieza a moverse es imposible pararlo. La primera línea que todo ejército desea.</p>
             <p>Vida: 500</p>
             <p>Defensa: 45</p>
             <p>Ataque: 30</p>
-        </div> 
-        <div class="imagen4">
-            <img id="vikingoSel" src="img/vikingo-removebg-preview.png" alt="vikingoSel">
-            <p id="nom4">Nombre: Devora Mentes </p>
-            <p>Pierde el control al atacar logrando inflingir el máximo daño al cuerpo y mente del rival, pero quedando al descubierto ante cualquier ataque enemigo.</p>
+            <input onclick="seleccionarPersonaje(2)" class="btn btn-dark" type="button" id="tanqueSel" value="Seleccionar">
+        </div>
+        </div>
+        
+        <div class="imagen3 col-4" >
+            <div class="card card-body text-bg-primary mb-3">
+            <img class="card-img-top" src="img/Guerrero-removebg-preview.png" alt="guerreroSel">
+            <p class="card-tittle card-header nom" id="nom3"> Nombre: Asesino Élite</p> <span id="guerSpan"></span>
+            <p class="card-text">Muy talentoso pero con un cuerpo frágil, dotado de un armamento élite que le permite resistir y asestar golpes mortales.</p>
+            <p>Vida: 150</p>
+            <p>Defensa: 45</p>
+            <p>Ataque: 45</p>
+            <input onclick="seleccionarPersonaje(3)" class="btn btn-dark" type="button" id="guerreroSel" value="Seleccionar">
+        </div>
+        <div class="card card-body text-bg-primary mb-3">
+            <img class="card-img-top" src="img/vikingo-removebg-preview.png" alt="vikingoSel">
+            <p class="card-tittle card-header nom" id="nom4">Nombre: Devora Mentes </p> <span id="vikSpan"></span>
+            <p class="card-text">Pierde el control al atacar logrando inflingir el máximo daño al cuerpo y mente del rival, pero quedando al descubierto ante cualquier ataque enemigo.</p>
             <p>Vida: 300</p>
             <p>Defensa: 15</p>
             <p>Ataque: 65</p>
+            <input onclick="seleccionarPersonaje(4)" class="btn btn-dark" type="button" id="vikingoSel" value="Seleccionar">
+        </div>
         </div>
        
+        <div class="imgMons col card card-body text-bg-danger mb-3">
+            <img src="img/monstar-removebg-preview.png" alt="">
+            <p class="card-tittle card-header">Guardián de la puerta</p>
+            <p>Vida: 500</p>
+            <input onclick="attack()" type="button" id="atacar" value="Atacar" class="btn btn-warning">
+        </div>
+        
     </div>
 
+    
+
     <div class="contMejoras">
-        <h4> Mejoras(?)</h4>
+        <h3> Mejoras(?)</h3>
         <ul id="listaMejoras">
 
         </ul>
@@ -86,5 +98,7 @@
 </body>
 <!--los scripts de js van al final del html, pero antes de cerrar la etiqueta html-->
 <script src="index.js"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

@@ -58,90 +58,52 @@ var element = document.body;
     element.classList.toggle("modo-oscuro");
     }
 
+function limpiarElementos() {
+    let solSpan = document.getElementById("solSpan"),
+        tanSpan = document.getElementById("tanSpan"),
+        guerSpan = document.getElementById("guerSpan"),
+        vikSpan = document.getElementById("vikSpan");
 
+        solSpan.innerHTML = "";
+        tanSpan.innerHTML = "";
+        guerSpan.innerHTML = "";
+        vikSpan.innerHTML = "";
+        anuncios.innerHTML = "";
+        removerPorClase("mejora");
+}
 
-tanqueSel.addEventListener("click", clickTanque)
-function clickTanque(){
-    nom1.innerHTML = "<p>SELECCIONADO</p>";
-    attack(tanque);
+function seleccionarPersonaje(personaje) {
+    limpiarElementos();
     
-}
+    localStorage.clear();
+    switch (personaje) {
+        case 1:
+            document.getElementById("solSpan").innerHTML = "Seleccionado";
+            localStorage.clear();
+            localStorage.setItem("personaje", JSON.stringify({nombre: "Cyborg", vida: 200, defensa: 30, ataque: 30*2}));
+            break;
+    
+        case 2:
+            document.getElementById("tanSpan").innerHTML = "Seleccionado";
+            localStorage.clear();
+            localStorage.setItem("personaje", JSON.stringify({nombre: "Titán de avance", vida: 500, defensa: 45, ataque: 30}));
+            break;
 
+        case 3:
+            document.getElementById("guerSpan").innerHTML = "Seleccionado";
+            localStorage.clear();
+            localStorage.setItem("personaje", JSON.stringify({nombre: "Asesino Élite" ,vida: 150, defensa: 45, ataque: 45}));
+            break;
 
-soldadoSel.addEventListener("click", clickSoldado)
-function clickSoldado(){
-    nom2.innerHTML = "<p>SELECCIONADO</p>";
-    attack(soldado);  
-}
+        case 4:
+            document.getElementById("vikSpan").innerHTML = "Seleccionado";
+            localStorage.clear();
+            localStorage.setItem("personaje", JSON.stringify({nombre: "Devora Mentes" ,vida: 300, defensa: 15, ataque: 65}));
+            break;
 
+    }
 
-guerreroSel.addEventListener("click", clickGuerrero)
-function clickGuerrero(){
-    nom3.innerHTML = "<p>SELECCIONADO</p>";
-    attack(guerrero);
-}
-
-
-vikingoSel.addEventListener("click", clickVikingo)
-function clickVikingo(){
-    nom4.innerHTML = "<p>SELECCIONADO</p>";
-    attack(vikingo);  
-}
-
-
-
-function attack(selected) {
-   
-    res = "Seleccionaste " + selected?.nombre + ": " + selected?.descripcion;
-    resultados(res)
-    res = selected?.nombre + " VS " + monstruo?.nombre;
-    resultados(res)
-    let daño = selected.ataque - monstruo.defensa,
-        dañoM = monstruo.ataque - selected.defensa,
-        vidaResP1 = selected.vida - dañoM,
-        vidaResMons = monstruo.vida - daño;
-        seleccionado = selected;
-                for (let i = vidaResMons, o = vidaResP1; i > 0 || o > 0; i -= daño, o -= dañoM){
-                    if (daño<0){daño=0}
-                    else if (dañoM<0){dañoM=0}
-                    else if (i<=0){
-                    
-                    
-                       res += "<br>" + "Has ganado, felicidades";
-                       resultados(res)
-                       
-                    break;
-                }
-                else if (o<=0){
-                    
-                    
-                        res = "Has muerto..." + "<br>" + "Pero puedes hacerte más fuerte! <br> Haz clic en alguna de las siguientes mejoras:";
-                       
-                      
-                        
-                        resultados(res)
-                        crearBtnPacto();
-                        crearBtnArm();
-                        crearBtnReju();
-                        
-                        
-                        
-                        
-                      
-                    break;
-                }
-
-                else if (o==0 && i==0){
-                    res = "HP";
-                    resultados(res)
-                    break;
-                }
-
-                res = "Atacas con " + daño + " puntos de daño, HP monstruo: " + i + "\n" + "Recibes " + dañoM + " puntos de daño, HP Jugador: " + o + ".";
-                resultados(res)
-                
-            }
-            btnGuardar.addEventListener("click", clickGuardar)
+    btnGuardar.addEventListener("click", clickGuardar)
             function clickGuardar(){
                 const guardarSelected = JSON.stringify(selected);
                 localStorage.setItem("Archivo Guardado", guardarSelected);
@@ -156,17 +118,74 @@ function attack(selected) {
                 const cargarGuardarSelected = localStorage.getItem("Archivo Guardado");
                 const cargarSelected = JSON.parse(cargarGuardarSelected);
             }
-               
-            
 }
+
+
+function attack() {
+    let selected = JSON.parse(localStorage.getItem("personaje"));
+    console.log(selected);
+    scroll(100, 2800);
+    res = "Seleccionaste " + selected?.nombre;
+    resultados(res)
+    res = selected?.nombre + " VS " + monstruo?.nombre;
+    resultados(res)
+    let daño = selected.ataque - monstruo.defensa,
+        dañoM = monstruo.ataque - selected.defensa;
+    console.log(daño);
+    console.log(dañoM);
+    
+    let monstruoVida = monstruo.vida;
+    let personajeVida = selected.vida;
+
+        
+    do {monstruoVida -= daño;
+        personajeVida -= dañoM;
+
+        if (daño<0){daño=0}
+        else if (dañoM<0){dañoM=0}
+        res = "Atacas con " + daño + " puntos de daño, HP monstruo: " + (monstruoVida > 0 ? monstruoVida : 0) + "\n" + "Recibes " + dañoM + " puntos de daño, HP Jugador: " + (personajeVida > 0 ? personajeVida : 0) + ".";
+        resultados(res);
+
+
+    } while(monstruoVida > 0 && personajeVida > 0);
+
+            // for (; monstruoVida > 0 && personajeVida > 0; monstruoVida -= daño, personajeVida -= dañoM){
+            //     if (daño<0){daño=0}
+            //     else if (dañoM<0){dañoM=0}
+
+            //     res = "Atacas con " + daño + " puntos de daño, HP monstruo: " + (monstruoVida > 0 ? monstruoVida : 0) + "\n" + "Recibes " + dañoM + " puntos de daño, HP Jugador: " + (personajeVida > 0 ? personajeVida : 0) + ".";
+            //     resultados(res)
+                
+            // }
+
+            if (monstruoVida <= 0){
+                    
+                res += "<br>" + "Has ganado, felicidades";
+                resultados(res)              
+            }
+            
+            else {
+                
+                
+                    res = "Has muerto..." + "<br>" + "Pero puedes hacerte más fuerte! <br> Haz clic en alguna de las siguientes mejoras:";
+                   
+                    resultados(res)
+                    crearBtnPacto();
+                    crearBtnArm();
+                    crearBtnReju();               
+            }
+            
+        }
 
 function crearBtnPacto() {
     let boton = document.createElement("button");
     let texto = document.createTextNode("Pacto");
     boton.classList.add("mejora");
+    let selected = JSON.parse(localStorage.getItem("personaje"));
     boton.onclick = function(){
-        seleccionado.ataque *= 2;
-        seleccionado.vida /= 2;
+        selected.ataque *= 2;
+        selected.vida /= 2;
+        localStorage.setItem("personaje", JSON.stringify({nombre: selected.nombre, vida: selected.vida, defensa: selected.defensa, ataque: selected.ataque}));
         reset();
         removerPorClase("mejora");
       };
@@ -180,10 +199,12 @@ function crearBtnArm() {
     let boton1 = document.createElement("button");
     let texto = document.createTextNode("Armadura Pesada");
     boton1.classList.add("mejora");
+    let selected = JSON.parse(localStorage.getItem("personaje"));
     boton1.onclick = function(){
-        seleccionado.defensa *= 1.9;
-        seleccionado.vida -= (seleccionado.vida / 4);
-        seleccionado.ataque -= (seleccionado.ataque / 4);
+        selected.defensa *= 1.9;
+        selected.vida -= (selected.vida / 4);
+        selected.ataque -= (selected.ataque / 4);
+        localStorage.setItem("personaje", JSON.stringify({nombre: selected.nombre, vida: selected.vida, defensa: selected.defensa, ataque: selected.ataque}));
         reset();
         removerPorClase("mejora");
       };
@@ -195,10 +216,11 @@ function crearBtnReju() {
     let boton2 = document.createElement("button");
     let texto = document.createTextNode("Rejuvenecedor Celular");
     boton2.classList.add("mejora");
+    let selected = JSON.parse(localStorage.getItem("personaje"));
     boton2.onclick = function(){
-        seleccionado.defensa -= 5;
-        seleccionado.vida += 200;
-        seleccionado.ataque -= 5;
+        selected.vida += 200;
+        selected.ataque -= 5;
+        localStorage.setItem("personaje", JSON.stringify({nombre: selected.nombre, vida: selected.vida, defensa: selected.defensa, ataque: selected.ataque}));
         reset();
         removerPorClase("mejora");
       };
@@ -227,11 +249,6 @@ fetch(url)
     });
 
 
-    
-
-
-
-
 function resultados(res) {
     anuncios.innerHTML += res + "<br>";
 }
@@ -240,7 +257,7 @@ function reset(){
     anuncios.innerHTML = "";
     Swal.fire(
         "Mejora seleccionada",
-        "Haz click de nuevo en el mismo personaje para jugar con la mejora aplicada",
+        "Haz click en atacar",
         "success"
     )
 }
